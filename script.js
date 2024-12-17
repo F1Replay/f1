@@ -1,36 +1,38 @@
-// Data závodů
-const raceData = {
-    2024: [
-        { name: "Závod 1", video: "video2024_1.mp4" },
-        { name: "Závod 2", video: "video2024_2.mp4" }
-    ],
-    2025: [
-        { name: "Závod 1", video: "video2025_1.mp4" },
-        { name: "Závod 2", video: "video2025_2.mp4" }
-    ],
-    // Další roky...
-};
+// Seznam tratí F1 pro rok 2024
+const tracks = [
+    "Bahrajn", "Saúdská Arábie", "Austrálie", "Japonsko", "Čína",
+    "Miami", "Emilia Romagna", "Monako", "Španělsko", "Kanada",
+    "Rakousko", "Velká Británie", "Maďarsko", "Belgie", "Nizozemsko",
+    "Itálie", "Singapur", "USA", "Mexiko", "Brazílie", "Las Vegas",
+    "Katar", "Abú Zabí"
+];
 
-// Načtení závodů podle roku
-function loadRaces(year) {
-    const raceList = document.getElementById("race-list");
-    raceList.innerHTML = ""; // Vyčištění obsahu
+// Dynamické generování tratí
+const trackList = document.querySelector(".track-list");
+tracks.forEach(track => {
+    const trackDiv = document.createElement("div");
+    trackDiv.className = "track";
 
-    if (!raceData[year] || raceData[year].length === 0) {
-        raceList.innerHTML = `<p>Žádné závody pro rok ${year}.</p>`;
-        return;
-    }
+    trackDiv.innerHTML = `
+        <h2>${track}</h2>
+        <button onclick="playVideo('${track.toLowerCase()}_qualy.mp4')">Kvalifikace</button>
+        <button onclick="playVideo('${track.toLowerCase()}_sprint.mp4')">Sprint</button>
+        <button onclick="playVideo('${track.toLowerCase()}_race.mp4')">Závod</button>
+    `;
 
-    raceData[year].forEach(race => {
-        const raceDiv = document.createElement("div");
-        raceDiv.className = "race";
-        raceDiv.innerHTML = `
-            <h3>${race.name}</h3>
-            <video controls width="600">
-                <source src="${race.video}" type="video/mp4">
-                Váš prohlížeč nepodporuje přehrávání videa.
-            </video>
-        `;
-        raceList.appendChild(raceDiv);
-    });
+    trackList.appendChild(trackDiv);
+});
+
+// Funkce pro přehrávání videí
+function playVideo(filename) {
+    const videoPath = `videos/${filename}`;
+    const videoPlayer = document.createElement("video");
+    videoPlayer.src = videoPath;
+    videoPlayer.controls = true;
+    videoPlayer.style.width = "80%";
+
+    // Vyčištění a zobrazení přehrávače
+    trackList.innerHTML = "";
+    trackList.appendChild(videoPlayer);
+    videoPlayer.play();
 }
