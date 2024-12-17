@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moje záznamy F1</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            text-align: center;
+        }
+        .year-buttons button {
+            margin: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .race-list {
+            margin-top: 20px;
+        }
+        .race {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Moje záznamy F1</h1>
+    <div class="year-buttons">
+        <button onclick="loadRaces(2024)">2024</button>
+        <button onclick="loadRaces(2025)">2025</button>
+        <button onclick="loadRaces(2026)">2026</button>
+        <button onclick="loadRaces(2027)">2027</button>
+        <button onclick="loadRaces(2028)">2028</button>
+        <button onclick="loadRaces(2029)">2029</button>
+        <button onclick="loadRaces(2030)">2030</button>
+    </div>
+    <div class="race-list" id="race-list">
+        <p>Vyberte rok pro zobrazení závodů.</p>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
